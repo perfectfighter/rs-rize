@@ -1,0 +1,11 @@
+The installed upstream package archive contains no standalone LICENSE, COPYING, or NOTICE file.
+The following metadata is copied from its installed package.json; no copyright notice has been invented.
+
+{
+  "name": "lazy-val",
+  "version": "1.0.5",
+  "author": "Vladimir Krivosheev",
+  "license": "MIT",
+  "repository": "develar/lazy-val",
+  "homepage": "https://github.com/develar/lazy-val"
+}
