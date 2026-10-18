@@ -1,0 +1,53 @@
+[workspace]
+members = ["crates/rize-core", "crates/rize-native", "crates/rize-cloud", "crates/rize-service", "src-tauri"]
+default-members = ["crates/rize-core", "crates/rize-native", "crates/rize-cloud", "crates/rize-service"]
+resolver = "2"
+
+[workspace.package]
+version = "1.2.0"
+edition = "2021"
+rust-version = "1.90"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde", "clock"] }
+chrono-tz = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+regex = "1"
+url = "2"
+tempfile = "3"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "stream"] }
+axum = "0.8"
+rusqlite = { version = "0.37", features = ["bundled"] }
+sha2 = "0.10"
+scrypt = "0.11"
+rand = "0.8"
+base64 = "0.22"
+subtle = "2"
+aes-gcm = "0.10"
+async-trait = "0.1"
+futures-util = "0.3"
+rrule = "0.14"
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_UI_WindowsAndMessaging", "Win32_System_Threading", "Win32_System_SystemInformation", "Win32_UI_Input_KeyboardAndMouse", "Win32_System_RemoteDesktop", "Win32_Security_Cryptography", "Win32_System_Memory", "Win32_System_StationsAndDesktops", "Win32_Storage_FileSystem", "Win32_System_LibraryLoader", "Win32_Graphics_Gdi"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.dev]
+debug = 0
+
+[profile.test]
+debug = 0
+
+[profile.dev.package.scrypt]
+opt-level = 3
+
+[profile.dev.package.salsa20]
+opt-level = 3
+

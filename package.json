@@ -1,0 +1,35 @@
+{
+  "name": "rs-rize",
+  "productName": "Rize Local",
+  "version": "1.2.0",
+  "description": "Rust port of the existing Rize Local desktop application",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "start": "tauri dev",
+    "tauri": "tauri",
+    "package:windows": "tauri build --bundles nsis",
+    "test": "node --test tests/*.test.cjs",
+    "test:rust": "cargo test --workspace --exclude rs-rize",
+    "server": "cargo run --release -p rize-service --bin rize-service",
+    "mcp": "cargo run --release -p rize-service --bin rize-mcp"
+  },
+  "dependencies": {
+    "@fontsource/lato": "5.3.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-feather": "2.0.10",
+    "@tauri-apps/api": "2.12.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "5.0.4",
+    "linkedom": "0.18.13",
+    "vite": "6.4.2",
+    "@tauri-apps/cli": "2.12.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
