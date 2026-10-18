@@ -94,6 +94,41 @@ test('AI chat does not manufacture responses and retains the message when provid
   } finally { await app.cleanup(); }
 });
 
+test('Agent prompt chips prepare drafts and require consent before sending a report', async () => {
+  const calls = [];
+  const app = await mount(AgentPage, { cloudRequest: async (action, payload) => {
+    calls.push({ action, payload });
+    return action === 'ai.report' ? { report: { id: 'reviewed-report', title: 'Weekly report', text: 'Synthetic provider response', createdAt: '2026-10-17T10:00:00.000Z' } } : responses[action] || {};
+  } });
+  try {
+    await click(findButton(app.container, 'Review My Day'));
+    assert.match(app.container.querySelector('textarea').value, /approved work today/);
+    assert.equal(findButton(app.container, 'Send message').disabled, true);
+    assert.equal(calls.some(call => call.action === 'ai.chat' || call.action === 'ai.report'), false);
+    await click(findButton(app.container, 'Generate Weekly Report'));
+    const instructions = app.container.querySelector('textarea');
+    assert.match(instructions.value || instructions.defaultValue || instructions.textContent, /weekly report/);
+    assert.equal(findButton(app.container, 'Generate report').disabled, true);
+    assert.equal(calls.some(call => call.action === 'ai.chat' || call.action === 'ai.report'), false);
+    await check(app.container.querySelector('.cp-consent input'), true);
+    await submit(app.container.querySelector('form'));
+    assert.deepEqual(calls.find(call => call.action === 'ai.report').payload, {
+      prompt: 'Generate a weekly report from the team’s shared, approved time and highlight workload changes.',
+      consent: true,
+    });
+  } finally { await app.cleanup(); }
+});
+
+test('the composer Skills affordance opens the retained skill editor', async () => {
+  const app = await mount(AgentPage);
+  try {
+    await select(app.container.querySelector('[aria-label="Skill"]'), '__manage__');
+    assert.ok(findButton(app.container, 'New skill'));
+    assert.equal(app.container.querySelector('[role="tab"][aria-selected="true"]').textContent.trim(), 'Skills');
+    assert.equal(app.calls.some(call => call.action === 'ai.skills.save'), false);
+  } finally { await app.cleanup(); }
+});
+
 test('semantic proposals change local tags only after explicit review', async () => {
   const commands = [];
   const app = await mount(AgentPage, { mutate: async command => commands.push(command), cloudRequest: async action => action === 'ai.tag' ? { proposals: [{ entryId: 'e1', clientId: 'c1', projectId: 'p1', confidence: 0.95, method: 'embedding' }], requiresApproval: true } : responses[action] || {} });
