@@ -92,6 +92,13 @@ npm run package:windows
 `target/release/bundle/nsis/`. This uses the Tauri/WebView2 runtime rather than
 shipping Electron. Production signing and publishing are separate publisher tasks.
 
+The Windows workflow uploads `rs-rize-windows-installer` and
+`rs-rize-windows-x64` artifacts after a successful build. The portable ZIP contains
+`rs-rize.exe`, `rize-service.exe`, `rize-mcp.exe`, the complete `docs/` tree, notices,
+and a source ZIP. Extract the whole folder and run `rs-rize.exe`; WebView2 must be
+available. Workflow artifacts are retained for 30 days. This workflow does not
+automatically publish a GitHub Release or deploy the service.
+
 Unsigned development builds report self-updates as unsupported. A signed installed
 NSIS release needs an HTTPS Tauri update feed, a matching updater public key, signed
 update artifacts, and actual Windows Authenticode signing. The old Electron
