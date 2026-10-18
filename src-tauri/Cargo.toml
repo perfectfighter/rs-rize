@@ -1,0 +1,31 @@
+[package]
+name = "rs-rize"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+build = "build.rs"
+default-run = "rs-rize"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+rize-core = { path = "../crates/rize-core" }
+rize-cloud = { path = "../crates/rize-cloud" }
+rize-native = { path = "../crates/rize-native" }
+serde_json.workspace = true
+chrono.workspace = true
+tokio.workspace = true
+uuid.workspace = true
+url.workspace = true
+tempfile.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+webview2-com = "0.39"
+windows = { version = "0.62", features = ["Win32_Foundation", "Win32_System_Com"] }
+
