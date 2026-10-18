@@ -1,0 +1,614 @@
+[
+  {
+    "name": "dst",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:daily\nDTSTART;TZID=America/New_York:20260307T090000\nDTEND;TZID=America/New_York:20260307T100000\nRRULE:FREQ=DAILY;COUNT=3\nSUMMARY:Standup\nEND:VEVENT\nBEGIN:VEVENT\nUID:allday\nDTSTART;VALUE=DATE:20260308\nSUMMARY:Holiday\nEND:VEVENT\nBEGIN:VEVENT\nUID:instant\nDTSTART:20260308T160000Z\nSUMMARY:Reminder\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_7f615b9bdb0e6fc22d565109",
+          "uid": "daily",
+          "summary": "Standup",
+          "description": "",
+          "start": "2026-03-07T14:00:00.000Z",
+          "end": "2026-03-07T15:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_fe6791fb5bdff68413da833d",
+          "uid": "daily",
+          "summary": "Standup",
+          "description": "",
+          "start": "2026-03-08T13:00:00.000Z",
+          "end": "2026-03-08T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_cfba71d47fd0a47e93a6a649",
+          "uid": "daily",
+          "summary": "Standup",
+          "description": "",
+          "start": "2026-03-09T13:00:00.000Z",
+          "end": "2026-03-09T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_1404d5094fdbb5f2362afd3c",
+          "uid": "allday",
+          "summary": "Holiday",
+          "description": "",
+          "start": "2026-03-08T00:00:00.000Z",
+          "end": "2026-03-09T00:00:00.000Z",
+          "allDay": true,
+          "timeZone": "Asia/Kolkata",
+          "date": "2026-03-08"
+        },
+        {
+          "id": "calendar_bc28c630c94e2ec439f784d2",
+          "uid": "instant",
+          "summary": "Reminder",
+          "description": "",
+          "start": "2026-03-08T16:00:00.000Z",
+          "end": "2026-03-08T16:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_7f615b9bdb0e6fc22d565109",
+          "description": "Standup",
+          "start": "2026-03-07T14:00:00.000Z",
+          "end": "2026-03-07T15:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_fe6791fb5bdff68413da833d",
+          "description": "Standup",
+          "start": "2026-03-08T13:00:00.000Z",
+          "end": "2026-03-08T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_cfba71d47fd0a47e93a6a649",
+          "description": "Standup",
+          "start": "2026-03-09T13:00:00.000Z",
+          "end": "2026-03-09T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "weekly",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:weekly\nDTSTART;TZID=America/New_York:20260302T090000\nDTEND;TZID=America/New_York:20260302T100000\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=8\nSUMMARY:Weekly\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_26227bc937c8dcae5a4f7fcf",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-02T14:00:00.000Z",
+          "end": "2026-03-02T15:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_b1d72e4f79d940be41f94c43",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-04T14:00:00.000Z",
+          "end": "2026-03-04T15:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_f57d96503d5b93523cd4a3f3",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-06T14:00:00.000Z",
+          "end": "2026-03-06T15:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_7d53c4d48fcd433bf2b2078b",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-09T13:00:00.000Z",
+          "end": "2026-03-09T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_c8f8778b4bd788b78df093b4",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-11T13:00:00.000Z",
+          "end": "2026-03-11T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_e673d984fb1532b92a428168",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-13T13:00:00.000Z",
+          "end": "2026-03-13T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_81e1b3e23da00a96d6b29a6d",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-16T13:00:00.000Z",
+          "end": "2026-03-16T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_bd51acc0d433fac6bed4ae93",
+          "uid": "weekly",
+          "summary": "Weekly",
+          "description": "",
+          "start": "2026-03-18T13:00:00.000Z",
+          "end": "2026-03-18T14:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_26227bc937c8dcae5a4f7fcf",
+          "description": "Weekly",
+          "start": "2026-03-02T14:00:00.000Z",
+          "end": "2026-03-02T15:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_b1d72e4f79d940be41f94c43",
+          "description": "Weekly",
+          "start": "2026-03-04T14:00:00.000Z",
+          "end": "2026-03-04T15:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_f57d96503d5b93523cd4a3f3",
+          "description": "Weekly",
+          "start": "2026-03-06T14:00:00.000Z",
+          "end": "2026-03-06T15:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_7d53c4d48fcd433bf2b2078b",
+          "description": "Weekly",
+          "start": "2026-03-09T13:00:00.000Z",
+          "end": "2026-03-09T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_c8f8778b4bd788b78df093b4",
+          "description": "Weekly",
+          "start": "2026-03-11T13:00:00.000Z",
+          "end": "2026-03-11T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_e673d984fb1532b92a428168",
+          "description": "Weekly",
+          "start": "2026-03-13T13:00:00.000Z",
+          "end": "2026-03-13T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_81e1b3e23da00a96d6b29a6d",
+          "description": "Weekly",
+          "start": "2026-03-16T13:00:00.000Z",
+          "end": "2026-03-16T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_bd51acc0d433fac6bed4ae93",
+          "description": "Weekly",
+          "start": "2026-03-18T13:00:00.000Z",
+          "end": "2026-03-18T14:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "monthly",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:monthly\nDTSTART:20260302T090000Z\nDTEND:20260302T100000Z\nRRULE:FREQ=MONTHLY;BYDAY=MO;BYSETPOS=1;COUNT=2\nSUMMARY:Monthly\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_be584e20917f0c265f5b2bc7",
+          "uid": "monthly",
+          "summary": "Monthly",
+          "description": "",
+          "start": "2026-03-02T09:00:00.000Z",
+          "end": "2026-03-02T10:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_be584e20917f0c265f5b2bc7",
+          "description": "Monthly",
+          "start": "2026-03-02T09:00:00.000Z",
+          "end": "2026-03-02T10:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "exceptions",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:series\nDTSTART;TZID=America/New_York:20260307T090000\nDTEND;TZID=America/New_York:20260307T100000\nRRULE:FREQ=DAILY;COUNT=3\nEXDATE;TZID=America/New_York:20260308T090000\nSUMMARY:Base\nEND:VEVENT\nBEGIN:VEVENT\nUID:series\nRECURRENCE-ID;TZID=America/New_York:20260309T090000\nDTSTART;TZID=America/New_York:20260309T110000\nDTEND;TZID=America/New_York:20260309T120000\nSUMMARY:Moved\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_5eaa7194ecdb95fa87e8748d",
+          "uid": "series",
+          "summary": "Base",
+          "description": "",
+          "start": "2026-03-07T14:00:00.000Z",
+          "end": "2026-03-07T15:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        },
+        {
+          "id": "calendar_3f6a4c4b1f4d6e4ec1d93933",
+          "uid": "series",
+          "summary": "Moved",
+          "description": "",
+          "start": "2026-03-09T15:00:00.000Z",
+          "end": "2026-03-09T16:00:00.000Z",
+          "allDay": false,
+          "timeZone": "America/New_York"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_5eaa7194ecdb95fa87e8748d",
+          "description": "Base",
+          "start": "2026-03-07T14:00:00.000Z",
+          "end": "2026-03-07T15:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_3f6a4c4b1f4d6e4ec1d93933",
+          "description": "Moved",
+          "start": "2026-03-09T15:00:00.000Z",
+          "end": "2026-03-09T16:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "floating",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:floating\nDTSTART:20260303T090000\nDTEND:20260303T100000\nSUMMARY:Review\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_8cca83eec74f788a7ec6a16c",
+          "uid": "floating",
+          "summary": "Review",
+          "description": "",
+          "start": "2026-03-03T03:30:00.000Z",
+          "end": "2026-03-03T04:30:00.000Z",
+          "allDay": false,
+          "timeZone": "Asia/Kolkata"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_8cca83eec74f788a7ec6a16c",
+          "description": "Review",
+          "start": "2026-03-03T03:30:00.000Z",
+          "end": "2026-03-03T04:30:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "rdate",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:rdate\nDTSTART:20260301T090000Z\nDTEND:20260301T100000Z\nRRULE:FREQ=DAILY;COUNT=2\nRDATE:20260305T090000Z,20260306T090000Z\nSUMMARY:Extra dates\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_599a83677b0e0543b4ad576f",
+          "uid": "rdate",
+          "summary": "Extra dates",
+          "description": "",
+          "start": "2026-03-01T09:00:00.000Z",
+          "end": "2026-03-01T10:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        },
+        {
+          "id": "calendar_2c34fe426f7459df803d5ac9",
+          "uid": "rdate",
+          "summary": "Extra dates",
+          "description": "",
+          "start": "2026-03-02T09:00:00.000Z",
+          "end": "2026-03-02T10:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_599a83677b0e0543b4ad576f",
+          "description": "Extra dates",
+          "start": "2026-03-01T09:00:00.000Z",
+          "end": "2026-03-01T10:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_2c34fe426f7459df803d5ac9",
+          "description": "Extra dates",
+          "start": "2026-03-02T09:00:00.000Z",
+          "end": "2026-03-02T10:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "duration",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:duration\nDTSTART:20260303T090000Z\nDURATION:PT1H30M\nSUMMARY:Duration\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_fbbb234c5950a08cadb9a181",
+          "uid": "duration",
+          "summary": "Duration",
+          "description": "",
+          "start": "2026-03-03T09:00:00.000Z",
+          "end": "2026-03-03T10:30:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_fbbb234c5950a08cadb9a181",
+          "description": "Duration",
+          "start": "2026-03-03T09:00:00.000Z",
+          "end": "2026-03-03T10:30:00.000Z",
+          "durationMs": 5400000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "windows",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:windows\nDTSTART;TZID=\"India Standard Time\":20260303T090000\nDTEND;TZID=\"India Standard Time\":20260303T100000\nSUMMARY:Windows time\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_80d2d14fd8ceca66da1bee60",
+          "uid": "windows",
+          "summary": "Windows time",
+          "description": "",
+          "start": "2026-03-03T03:30:00.000Z",
+          "end": "2026-03-03T04:30:00.000Z",
+          "allDay": false,
+          "timeZone": "Asia/Calcutta"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_80d2d14fd8ceca66da1bee60",
+          "description": "Windows time",
+          "start": "2026-03-03T03:30:00.000Z",
+          "end": "2026-03-03T04:30:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "boundary",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:ending-from\nDTSTART:20260228T230000Z\nDTEND:20260301T000000Z\nEND:VEVENT\nBEGIN:VEVENT\nUID:at-to\nDTSTART:20260401T000000Z\nDTEND:20260401T010000Z\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_761ff8835b6ab885481b40d1",
+          "uid": "ending-from",
+          "summary": "Calendar event",
+          "description": "",
+          "start": "2026-02-28T23:00:00.000Z",
+          "end": "2026-03-01T00:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        },
+        {
+          "id": "calendar_1048969179ce7d00dd93f39f",
+          "uid": "at-to",
+          "summary": "Calendar event",
+          "description": "",
+          "start": "2026-04-01T00:00:00.000Z",
+          "end": "2026-04-01T01:00:00.000Z",
+          "allDay": false,
+          "timeZone": "Etc/UTC"
+        }
+      ],
+      "warnings": [],
+      "proposals": [
+        {
+          "externalId": "calendar_761ff8835b6ab885481b40d1",
+          "description": "Calendar event",
+          "start": "2026-02-28T23:00:00.000Z",
+          "end": "2026-03-01T00:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        },
+        {
+          "externalId": "calendar_1048969179ce7d00dd93f39f",
+          "description": "Calendar event",
+          "start": "2026-04-01T00:00:00.000Z",
+          "end": "2026-04-01T01:00:00.000Z",
+          "durationMs": 3600000,
+          "source": "calendar",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  {
+    "name": "allday-recurring",
+    "ics": "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:dates\nDTSTART;VALUE=DATE:20260307\nRRULE:FREQ=DAILY;COUNT=3\nSUMMARY:Dates\nEND:VEVENT\nEND:VCALENDAR",
+    "options": {
+      "from": "2026-03-01",
+      "to": "2026-04-01",
+      "timeZone": "Asia/Kolkata"
+    },
+    "expected": {
+      "events": [
+        {
+          "id": "calendar_b53114b9aad84bc02ab70ee0",
+          "uid": "dates",
+          "summary": "Dates",
+          "description": "",
+          "start": "2026-03-07T00:00:00.000Z",
+          "end": "2026-03-08T00:00:00.000Z",
+          "allDay": true,
+          "timeZone": "Asia/Kolkata",
+          "date": "2026-03-07"
+        },
+        {
+          "id": "calendar_536735effd013b7337ef45f1",
+          "uid": "dates",
+          "summary": "Dates",
+          "description": "",
+          "start": "2026-03-08T00:00:00.000Z",
+          "end": "2026-03-09T00:00:00.000Z",
+          "allDay": true,
+          "timeZone": "Asia/Kolkata",
+          "date": "2026-03-08"
+        },
+        {
+          "id": "calendar_a2804c19d5fc436fe27f2943",
+          "uid": "dates",
+          "summary": "Dates",
+          "description": "",
+          "start": "2026-03-09T00:00:00.000Z",
+          "end": "2026-03-10T00:00:00.000Z",
+          "allDay": true,
+          "timeZone": "Asia/Kolkata",
+          "date": "2026-03-09"
+        }
+      ],
+      "warnings": [],
+      "proposals": []
+    }
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "id": "invoice",
+  "number": "INV-0001",
+  "sequence": 1,
+  "clientId": "client",
+  "clientName": "Synthetic client",
+  "billTo": {
+    "contact": "",
+    "email": "",
+    "address": ""
+  },
+  "issuer": {
+    "name": "",
+    "address": "",
+    "email": "",
+    "paymentInstructions": "",
+    "invoicePrefix": "INV-"
+  },
+  "currency": "USD",
+  "currencyDigits": 2,
+  "startDate": "2026-10-01",
+  "endDate": "2026-10-31",
+  "issueDate": "2026-10-17",
+  "dueDate": "2026-11-16",
+  "paymentDays": 30,
+  "status": "draft",
+  "lines": [
+    {
+      "id": "owner-entry:time",
+      "entryId": "owner-entry",
+      "contractId": "",
+      "description": "Reviewed work",
+      "kind": "time",
+      "quantityHours": 1,
+      "durationMs": 3600000,
+      "rate": 100,
+      "amountMinor": 10000
+    }
+  ],
+  "subtotalMinor": 10000,
+  "taxBps": 0,
+  "taxMinor": 0,
+  "discountMinor": 0,
+  "totalMinor": 10000,
+  "payments": [],
+  "paidMinor": 0,
+  "outstandingMinor": 10000,
+  "notes": "",
+  "paymentInstructions": "",
+  "voidReason": ""
+}
