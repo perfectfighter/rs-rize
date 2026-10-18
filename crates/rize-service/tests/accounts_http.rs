@@ -9,6 +9,7 @@ use std::{
         Arc,
     },
 };
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 struct Fixture {
     state: AppState,
@@ -209,11 +210,7 @@ async fn actual_http_origins_body_bounds_and_registration_gates() {
         .await
         .unwrap();
     assert_eq!(options.status(), 204);
-    for (data, status) in [
-        ("{".to_string(), 400),
-        ("[]".to_string(), 400),
-        (" ".repeat(1024 * 1024 + 1), 413),
-    ] {
+    for (data, status) in [("{".to_string(), 400), ("[]".to_string(), 400)] {
         let r = f
             .client
             .post(format!("{}/v1/auth/register", f.base))
@@ -224,6 +221,30 @@ async fn actual_http_origins_body_bounds_and_registration_gates() {
             .unwrap();
         assert_eq!(r.status(), status);
     }
+    // The server rejects an oversized declared body before accepting its bytes.
+    // Send only headers so Windows cannot abort a still-uploading HTTP client
+    // when the server returns 413 and closes the rejected request's connection.
+    let authority = f.base.strip_prefix("http://").unwrap();
+    let mut oversized = tokio::net::TcpStream::connect(authority).await.unwrap();
+    let headers = format!(
+        "POST /v1/auth/register HTTP/1.1\r\nHost: {authority}\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n",
+        1024 * 1024 + 1
+    );
+    oversized.write_all(headers.as_bytes()).await.unwrap();
+    let status_line = tokio::time::timeout(std::time::Duration::from_secs(10), async {
+        let mut line = Vec::new();
+        while !line.ends_with(b"\r\n") {
+            assert!(line.len() < 4096, "HTTP response status line exceeds limit");
+            line.push(oversized.read_u8().await.unwrap());
+        }
+        String::from_utf8(line).unwrap()
+    })
+    .await
+    .expect("The server must reject oversized Content-Length before receiving a body");
+    let mut status_fields = status_line.split_whitespace();
+    assert_eq!(status_fields.next(), Some("HTTP/1.1"), "{status_line:?}");
+    assert_eq!(status_fields.next(), Some("413"), "{status_line:?}");
+    drop(oversized);
     let weak = f
         .call(
             "POST",
