@@ -1,0 +1,25 @@
+[package]
+name = "rize-cloud"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+serde.workspace = true
+rize-core = { path = "../rize-core" }
+rize-native = { path = "../rize-native" }
+serde_json.workspace = true
+chrono.workspace = true
+uuid.workspace = true
+url.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+base64.workspace = true
+futures-util.workspace = true
+
+[dev-dependencies]
+async-trait.workspace = true
+rize-service = { path = "../rize-service" }
+tempfile.workspace = true
+axum.workspace = true
+aes-gcm.workspace = true
