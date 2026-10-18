@@ -35,6 +35,13 @@ Choose **Create my workspace** for empty local data or the labeled sample worksp
 for exploration. Automatic tracking remains opt-in and is unavailable in sample
 mode. [MIGRATION.md](docs/MIGRATION.md) explains moving existing v1.2 data.
 
+## Desktop appearance
+
+The presentation is aligned to official Rize desktop screenshots and its classic dark theme.
+See [reference sources](docs/UI-REFERENCE-SOURCES.md) and the [visual QA status](design-qa.md).
+Automated behavior checks pass separately from visual fidelity; a same-state Windows screenshot
+comparison remains required. Existing capabilities and native commands are retained.
+
 ## Existing functionality
 
 - Opt-in Windows foreground tracking, idle and schedule handling, private-window
