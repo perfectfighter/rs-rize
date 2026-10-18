@@ -1,0 +1,227 @@
+{
+  "sourceCommit": "98f56dba6138280b64a7ea57c02b91b73a268b8a",
+  "initial": {
+    "schemaVersion": 1,
+    "workspaceId": "golden-timer",
+    "onboarded": true,
+    "demo": false,
+    "settings": {
+      "displayName": "You",
+      "trackingEnabled": false,
+      "idleSeconds": 300,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "entries": [],
+    "clients": [],
+    "projects": [],
+    "tasks": [],
+    "rules": [],
+    "sessions": [],
+    "timer": {
+      "id": "fixture-timer",
+      "kind": "meeting",
+      "goal": "Focused work",
+      "targetMs": 1800000,
+      "clientId": "",
+      "projectId": "",
+      "taskId": "",
+      "autoCollected": false,
+      "status": "paused",
+      "startedAt": "2026-10-17T09:00:00.000Z",
+      "resumedAt": null,
+      "elapsedMs": 0,
+      "segments": []
+    },
+    "business": {
+      "profile": {
+        "name": "",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "",
+        "invoicePrefix": "INV-"
+      },
+      "clientTerms": [],
+      "contracts": [],
+      "invoices": [],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 1
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  },
+  "steps": [
+    {
+      "command": {
+        "type": "timer.resume",
+        "payload": {}
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "timer.pause",
+        "payload": {}
+      },
+      "nowMs": 1792228200000
+    },
+    {
+      "command": {
+        "type": "timer.resume",
+        "payload": {}
+      },
+      "nowMs": 1792229400000
+    },
+    {
+      "command": {
+        "type": "timer.update",
+        "payload": {
+          "goal": "Conclude meeting"
+        }
+      },
+      "nowMs": 1792229600000
+    },
+    {
+      "command": {
+        "type": "timer.stop",
+        "payload": {}
+      },
+      "nowMs": 1792229700000
+    }
+  ],
+  "expected": {
+    "schemaVersion": 1,
+    "workspaceId": "golden-timer",
+    "onboarded": true,
+    "demo": false,
+    "settings": {
+      "displayName": "You",
+      "trackingEnabled": false,
+      "idleSeconds": 300,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "entries": [
+      {
+        "id": "fixture-timer:segment:0",
+        "start": "2026-10-17T09:00:00.000Z",
+        "end": "2026-10-17T09:10:00.000Z",
+        "durationMs": 600000,
+        "description": "Conclude meeting",
+        "app": "Rize Local",
+        "title": "Conclude meeting",
+        "status": "approved",
+        "source": "timer",
+        "category": "meeting",
+        "clientId": "",
+        "projectId": "",
+        "taskId": "",
+        "billable": false,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      },
+      {
+        "id": "fixture-timer:segment:1",
+        "start": "2026-10-17T09:30:00.000Z",
+        "end": "2026-10-17T09:35:00.000Z",
+        "durationMs": 300000,
+        "description": "Conclude meeting",
+        "app": "Rize Local",
+        "title": "Conclude meeting",
+        "status": "approved",
+        "source": "timer",
+        "category": "meeting",
+        "clientId": "",
+        "projectId": "",
+        "taskId": "",
+        "billable": false,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      }
+    ],
+    "clients": [],
+    "projects": [],
+    "tasks": [],
+    "rules": [],
+    "sessions": [
+      {
+        "id": "fixture-timer",
+        "kind": "meeting",
+        "goal": "Conclude meeting",
+        "targetMs": 1800000,
+        "clientId": "",
+        "projectId": "",
+        "taskId": "",
+        "autoCollected": false,
+        "startedAt": "2026-10-17T09:00:00.000Z",
+        "endedAt": "2026-10-17T09:35:00.000Z",
+        "elapsedMs": 900000,
+        "segments": [
+          {
+            "start": "2026-10-17T09:00:00.000Z",
+            "end": "2026-10-17T09:10:00.000Z"
+          },
+          {
+            "start": "2026-10-17T09:30:00.000Z",
+            "end": "2026-10-17T09:35:00.000Z"
+          }
+        ]
+      }
+    ],
+    "timer": null,
+    "business": {
+      "profile": {
+        "name": "",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "",
+        "invoicePrefix": "INV-"
+      },
+      "clientTerms": [],
+      "contracts": [],
+      "invoices": [],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 1
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  }
+}

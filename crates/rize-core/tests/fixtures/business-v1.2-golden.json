@@ -1,0 +1,1253 @@
+{
+  "sourceCommit": "98f56dba6138280b64a7ea57c02b91b73a268b8a",
+  "now": 1792238400000,
+  "source": {
+    "schemaVersion": 1,
+    "workspaceId": "b029c30a-ba6f-4201-bad7-d6af1de2eb6f",
+    "onboarded": true,
+    "demo": false,
+    "settings": {
+      "displayName": "You",
+      "trackingEnabled": false,
+      "idleSeconds": 300,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "entries": [
+      {
+        "id": "e0",
+        "start": "2026-10-17T09:00:00.000Z",
+        "end": "2026-10-17T10:00:00.000Z",
+        "durationMs": 3600000,
+        "description": "Development <script>",
+        "app": "Manual entry",
+        "title": "",
+        "status": "approved",
+        "source": "manual",
+        "category": "neutral",
+        "clientId": "c",
+        "projectId": "p",
+        "taskId": "",
+        "billable": true,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      },
+      {
+        "id": "e1",
+        "start": "2026-10-18T09:00:00.000Z",
+        "end": "2026-10-18T10:00:00.000Z",
+        "durationMs": 3600000,
+        "description": "Development <script>",
+        "app": "Manual entry",
+        "title": "",
+        "status": "approved",
+        "source": "manual",
+        "category": "neutral",
+        "clientId": "c",
+        "projectId": "p",
+        "taskId": "",
+        "billable": true,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      }
+    ],
+    "clients": [
+      {
+        "id": "c",
+        "name": "Client <Studio>",
+        "hourlyRate": 100
+      }
+    ],
+    "projects": [
+      {
+        "id": "p",
+        "name": "Project",
+        "clientId": "c",
+        "keywords": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": ""
+      }
+    ],
+    "tasks": [],
+    "rules": [],
+    "sessions": [],
+    "timer": null,
+    "business": {
+      "profile": {
+        "name": "Original <Ltd>",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "Bank transfer\n<&>",
+        "invoicePrefix": "BILL-"
+      },
+      "clientTerms": [
+        {
+          "id": "terms",
+          "clientId": "c",
+          "contact": "Ada",
+          "email": "ada@example.test",
+          "address": "",
+          "currency": "USD",
+          "paymentDays": 14
+        }
+      ],
+      "contracts": [
+        {
+          "id": "contract",
+          "clientId": "c",
+          "projectId": "p",
+          "type": "hybrid",
+          "hourlyRate": 100,
+          "retainerMinor": 10000,
+          "includedHours": 1.5,
+          "budgetHours": 5,
+          "costRate": 40,
+          "startDate": "2026-10-01",
+          "endDate": "2026-10-31",
+          "currency": "USD"
+        }
+      ],
+      "invoices": [],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 1
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  },
+  "payload": {
+    "clientId": "c",
+    "startDate": "2026-10-01",
+    "endDate": "2026-10-31",
+    "taxBps": 725,
+    "discountMinor": 1000,
+    "issueDate": "2026-10-17"
+  },
+  "draft": {
+    "id": "740f3d54-5769-4096-a37d-3fa5e9561990",
+    "number": "BILL-00001",
+    "sequence": 1,
+    "clientId": "c",
+    "clientName": "Client <Studio>",
+    "billTo": {
+      "contact": "Ada",
+      "email": "ada@example.test",
+      "address": ""
+    },
+    "issuer": {
+      "name": "Original <Ltd>",
+      "address": "",
+      "email": "",
+      "paymentInstructions": "Bank transfer\n<&>",
+      "invoicePrefix": "BILL-"
+    },
+    "currency": "USD",
+    "currencyDigits": 2,
+    "startDate": "2026-10-01",
+    "endDate": "2026-10-31",
+    "issueDate": "2026-10-17",
+    "dueDate": "2026-10-31",
+    "paymentDays": 14,
+    "status": "draft",
+    "lines": [
+      {
+        "id": "retainer:contract:2026-10-01:2026-10-31",
+        "entryId": "",
+        "contractId": "contract",
+        "description": "Hybrid fee (2026-10-01 – 2026-10-31)",
+        "kind": "retainer",
+        "quantityHours": 0,
+        "durationMs": 0,
+        "rate": 0,
+        "amountMinor": 10000
+      },
+      {
+        "id": "e0:included",
+        "entryId": "e0",
+        "contractId": "contract",
+        "description": "Development <script> (included in retainer)",
+        "kind": "time",
+        "quantityHours": 1,
+        "durationMs": 3600000,
+        "rate": 0,
+        "amountMinor": 0
+      },
+      {
+        "id": "e1:included",
+        "entryId": "e1",
+        "contractId": "contract",
+        "description": "Development <script> (included in retainer)",
+        "kind": "time",
+        "quantityHours": 0.5,
+        "durationMs": 1800000,
+        "rate": 0,
+        "amountMinor": 0
+      },
+      {
+        "id": "e1:time",
+        "entryId": "e1",
+        "contractId": "contract",
+        "description": "Development <script>",
+        "kind": "time",
+        "quantityHours": 0.5,
+        "durationMs": 1800000,
+        "rate": 100,
+        "amountMinor": 5000
+      }
+    ],
+    "subtotalMinor": 15000,
+    "taxBps": 725,
+    "taxMinor": 1015,
+    "discountMinor": 1000,
+    "totalMinor": 15015,
+    "payments": [],
+    "paidMinor": 0,
+    "outstandingMinor": 15015,
+    "notes": "",
+    "paymentInstructions": "Bank transfer\n<&>",
+    "voidReason": ""
+  },
+  "final": {
+    "schemaVersion": 1,
+    "workspaceId": "b029c30a-ba6f-4201-bad7-d6af1de2eb6f",
+    "onboarded": true,
+    "demo": false,
+    "settings": {
+      "displayName": "You",
+      "trackingEnabled": false,
+      "idleSeconds": 300,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "entries": [
+      {
+        "id": "e0",
+        "start": "2026-10-17T09:00:00.000Z",
+        "end": "2026-10-17T10:00:00.000Z",
+        "durationMs": 3600000,
+        "description": "Development <script>",
+        "app": "Manual entry",
+        "title": "",
+        "status": "approved",
+        "source": "manual",
+        "category": "neutral",
+        "clientId": "c",
+        "projectId": "p",
+        "taskId": "",
+        "billable": true,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      },
+      {
+        "id": "e1",
+        "start": "2026-10-18T09:00:00.000Z",
+        "end": "2026-10-18T10:00:00.000Z",
+        "durationMs": 3600000,
+        "description": "Development <script>",
+        "app": "Manual entry",
+        "title": "",
+        "status": "approved",
+        "source": "manual",
+        "category": "neutral",
+        "clientId": "c",
+        "projectId": "p",
+        "taskId": "",
+        "billable": true,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      }
+    ],
+    "clients": [
+      {
+        "id": "c",
+        "name": "Client <Studio>",
+        "hourlyRate": 100
+      }
+    ],
+    "projects": [
+      {
+        "id": "p",
+        "name": "Project",
+        "clientId": "c",
+        "keywords": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": ""
+      }
+    ],
+    "tasks": [],
+    "rules": [],
+    "sessions": [],
+    "timer": null,
+    "business": {
+      "profile": {
+        "name": "Original <Ltd>",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "Bank transfer\n<&>",
+        "invoicePrefix": "BILL-"
+      },
+      "clientTerms": [
+        {
+          "id": "terms",
+          "clientId": "c",
+          "contact": "Ada",
+          "email": "ada@example.test",
+          "address": "",
+          "currency": "USD",
+          "paymentDays": 14
+        }
+      ],
+      "contracts": [
+        {
+          "id": "contract",
+          "clientId": "c",
+          "projectId": "p",
+          "type": "hybrid",
+          "hourlyRate": 100,
+          "retainerMinor": 10000,
+          "includedHours": 1.5,
+          "budgetHours": 5,
+          "costRate": 40,
+          "startDate": "2026-10-01",
+          "endDate": "2026-10-31",
+          "currency": "USD"
+        }
+      ],
+      "invoices": [
+        {
+          "id": "740f3d54-5769-4096-a37d-3fa5e9561990",
+          "number": "BILL-00001",
+          "sequence": 1,
+          "clientId": "c",
+          "clientName": "Client <Studio>",
+          "billTo": {
+            "contact": "Ada",
+            "email": "ada@example.test",
+            "address": ""
+          },
+          "issuer": {
+            "name": "Original <Ltd>",
+            "address": "",
+            "email": "",
+            "paymentInstructions": "Bank transfer\n<&>",
+            "invoicePrefix": "BILL-"
+          },
+          "currency": "USD",
+          "currencyDigits": 2,
+          "startDate": "2026-10-01",
+          "endDate": "2026-10-31",
+          "issueDate": "2026-10-17",
+          "dueDate": "2026-10-31",
+          "paymentDays": 14,
+          "status": "sent",
+          "lines": [
+            {
+              "id": "retainer:contract:2026-10-01:2026-10-31",
+              "entryId": "",
+              "contractId": "contract",
+              "description": "Hybrid fee (2026-10-01 – 2026-10-31)",
+              "kind": "retainer",
+              "quantityHours": 0,
+              "durationMs": 0,
+              "rate": 0,
+              "amountMinor": 10000
+            },
+            {
+              "id": "e0:included",
+              "entryId": "e0",
+              "contractId": "contract",
+              "description": "Development <script> (included in retainer)",
+              "kind": "time",
+              "quantityHours": 1,
+              "durationMs": 3600000,
+              "rate": 0,
+              "amountMinor": 0
+            },
+            {
+              "id": "e1:included",
+              "entryId": "e1",
+              "contractId": "contract",
+              "description": "Development <script> (included in retainer)",
+              "kind": "time",
+              "quantityHours": 0.5,
+              "durationMs": 1800000,
+              "rate": 0,
+              "amountMinor": 0
+            },
+            {
+              "id": "e1:time",
+              "entryId": "e1",
+              "contractId": "contract",
+              "description": "Development <script>",
+              "kind": "time",
+              "quantityHours": 0.5,
+              "durationMs": 1800000,
+              "rate": 100,
+              "amountMinor": 5000
+            }
+          ],
+          "subtotalMinor": 15000,
+          "taxBps": 725,
+          "taxMinor": 1015,
+          "discountMinor": 1000,
+          "totalMinor": 15015,
+          "payments": [
+            {
+              "id": "4a500738-73b7-440e-852c-d8d0e2a505d6",
+              "amountMinor": 2000,
+              "date": "2026-10-18",
+              "reference": "Bank <transfer>"
+            }
+          ],
+          "paidMinor": 2000,
+          "outstandingMinor": 13015,
+          "notes": "",
+          "paymentInstructions": "Bank transfer\n<&>",
+          "voidReason": ""
+        }
+      ],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 2
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  },
+  "summary": {
+    "startDate": "1970-01-01",
+    "endDate": "9999-12-31",
+    "currencies": [
+      {
+        "currency": "USD",
+        "currencyDigits": 2,
+        "totalHours": 2,
+        "billableHours": 2,
+        "revenueMinor": 15000,
+        "costMinor": 8000,
+        "profitMinor": 7000,
+        "invoicedMinor": 15015,
+        "outstandingMinor": 13015
+      }
+    ],
+    "projects": [
+      {
+        "projectId": "p",
+        "projectName": "Project",
+        "clientId": "c",
+        "clientName": "Client <Studio>",
+        "currency": "USD",
+        "currencyDigits": 2,
+        "totalHours": 2,
+        "billableHours": 2,
+        "revenueMinor": 15000,
+        "costMinor": 8000,
+        "profitMinor": 7000,
+        "budgetHours": 5,
+        "budgetRemainingHours": 3
+      }
+    ],
+    "contracts": [
+      {
+        "contractId": "contract",
+        "clientId": "c",
+        "projectId": "p",
+        "currency": "USD",
+        "totalHours": 2,
+        "budgetHours": 5,
+        "budgetRemainingHours": 3
+      }
+    ],
+    "notes": [
+      "Estimates use approved entries and contract rates; currencies are reported separately without conversion.",
+      "Retainer/hybrid contracts have one fixed period. The fixed fee is recognized on its start date; included hours span its entire period. No recurrence or proration is assumed.",
+      "Invoice selection uses the UTC date on which each entry starts."
+    ]
+  },
+  "narrowSummary": {
+    "startDate": "2026-10-18",
+    "endDate": "2026-10-18",
+    "currencies": [
+      {
+        "currency": "USD",
+        "currencyDigits": 2,
+        "totalHours": 1,
+        "billableHours": 1,
+        "revenueMinor": 5000,
+        "costMinor": 4000,
+        "profitMinor": 1000,
+        "invoicedMinor": 0,
+        "outstandingMinor": 0
+      }
+    ],
+    "projects": [
+      {
+        "projectId": "p",
+        "projectName": "Project",
+        "clientId": "c",
+        "clientName": "Client <Studio>",
+        "currency": "USD",
+        "currencyDigits": 2,
+        "totalHours": 1,
+        "billableHours": 1,
+        "revenueMinor": 5000,
+        "costMinor": 4000,
+        "profitMinor": 1000,
+        "budgetHours": 5,
+        "budgetRemainingHours": 3
+      }
+    ],
+    "contracts": [
+      {
+        "contractId": "contract",
+        "clientId": "c",
+        "projectId": "p",
+        "currency": "USD",
+        "totalHours": 2,
+        "budgetHours": 5,
+        "budgetRemainingHours": 3
+      }
+    ],
+    "notes": [
+      "Estimates use approved entries and contract rates; currencies are reported separately without conversion.",
+      "Retainer/hybrid contracts have one fixed period. The fixed fee is recognized on its start date; included hours span its entire period. No recurrence or proration is assumed.",
+      "Invoice selection uses the UTC date on which each entry starts."
+    ]
+  },
+  "html": "<!doctype html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'\"><title>Invoice BILL-00001</title><style>body{font:14px Arial,sans-serif;color:#20202a;padding:36px;line-height:1.5}h1{font-size:30px}header,.parties{display:flex;justify-content:space-between;gap:36px}section{margin:24px 0}.parties>div{width:48%}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #ddd;padding:10px}th:last-child,td:last-child{text-align:right}.totals{margin-left:auto;width:320px}.totals p{display:flex;justify-content:space-between}.status{font-weight:bold;text-transform:uppercase}footer{margin-top:40px;color:#555}@page{margin:18mm}tr{break-inside:avoid}</style></head><body><header><div><h1>Invoice BILL-00001</h1><p class=\"status\">sent</p></div><div>Issued: 2026-10-17<br>Due: 2026-10-31<br>Currency: USD</div></header><section class=\"parties\"><div><strong>From</strong><p>Original &lt;Ltd&gt;<br><br></p></div><div><strong>Bill to</strong><p>Client &lt;Studio&gt;<br>Ada<br><br>ada@example.test</p></div></section><table><thead><tr><th>Description</th><th>Hours</th><th>Rate</th><th>Amount</th></tr></thead><tbody><tr><td>Hybrid fee (2026-10-01 – 2026-10-31)</td><td>—</td><td>—</td><td>$100.00</td></tr><tr><td>Development &lt;script&gt; (included in retainer)</td><td>1.0000</td><td>$0.00</td><td>$0.00</td></tr><tr><td>Development &lt;script&gt; (included in retainer)</td><td>0.5000</td><td>$0.00</td><td>$0.00</td></tr><tr><td>Development &lt;script&gt;</td><td>0.5000</td><td>$100.00</td><td>$50.00</td></tr></tbody></table><section class=\"totals\"><p><span>Subtotal</span><span>$150.00</span></p><p><span>Discount</span><span>$10.00</span></p><p><span>Tax (7.25%)</span><span>$10.15</span></p><p><strong>Total</strong><strong>$150.15</strong></p><p><span>Paid</span><span>$20.00</span></p><p><strong>Outstanding</strong><strong>$130.15</strong></p></section><section><h3>Payments</h3><p>2026-10-18 · $20.00 · Bank &lt;transfer&gt;</p></section><section></section><footer>Bank transfer<br>&lt;&amp;&gt;</footer></body></html>",
+  "money": [
+    {
+      "input": [
+        1800000,
+        0.29,
+        2
+      ],
+      "result": 15
+    },
+    {
+      "input": [
+        3600000,
+        1.005,
+        2
+      ],
+      "result": 101
+    },
+    {
+      "input": [
+        1800000,
+        123,
+        0
+      ],
+      "result": 62
+    },
+    {
+      "input": [
+        1800000,
+        0.001,
+        3
+      ],
+      "result": 1
+    },
+    {
+      "input": [
+        5333,
+        1234.56789,
+        2
+      ],
+      "result": 183
+    }
+  ],
+  "currencyFormats": {
+    "AED": {
+      "digits": 2,
+      "formatted": "AED 1,234.56"
+    },
+    "AFN": {
+      "digits": 0,
+      "formatted": "AFN 123,456"
+    },
+    "ALL": {
+      "digits": 0,
+      "formatted": "ALL 123,456"
+    },
+    "AMD": {
+      "digits": 2,
+      "formatted": "AMD 1,234.56"
+    },
+    "ANG": {
+      "digits": 2,
+      "formatted": "ANG 1,234.56"
+    },
+    "AOA": {
+      "digits": 2,
+      "formatted": "AOA 1,234.56"
+    },
+    "ARS": {
+      "digits": 2,
+      "formatted": "ARS 1,234.56"
+    },
+    "AUD": {
+      "digits": 2,
+      "formatted": "A$1,234.56"
+    },
+    "AWG": {
+      "digits": 2,
+      "formatted": "AWG 1,234.56"
+    },
+    "AZN": {
+      "digits": 2,
+      "formatted": "AZN 1,234.56"
+    },
+    "BAM": {
+      "digits": 2,
+      "formatted": "BAM 1,234.56"
+    },
+    "BBD": {
+      "digits": 2,
+      "formatted": "BBD 1,234.56"
+    },
+    "BDT": {
+      "digits": 2,
+      "formatted": "BDT 1,234.56"
+    },
+    "BGN": {
+      "digits": 2,
+      "formatted": "BGN 1,234.56"
+    },
+    "BHD": {
+      "digits": 3,
+      "formatted": "BHD 123.456"
+    },
+    "BIF": {
+      "digits": 0,
+      "formatted": "BIF 123,456"
+    },
+    "BMD": {
+      "digits": 2,
+      "formatted": "BMD 1,234.56"
+    },
+    "BND": {
+      "digits": 2,
+      "formatted": "BND 1,234.56"
+    },
+    "BOB": {
+      "digits": 2,
+      "formatted": "BOB 1,234.56"
+    },
+    "BRL": {
+      "digits": 2,
+      "formatted": "R$1,234.56"
+    },
+    "BSD": {
+      "digits": 2,
+      "formatted": "BSD 1,234.56"
+    },
+    "BTN": {
+      "digits": 2,
+      "formatted": "BTN 1,234.56"
+    },
+    "BWP": {
+      "digits": 2,
+      "formatted": "BWP 1,234.56"
+    },
+    "BYN": {
+      "digits": 2,
+      "formatted": "BYN 1,234.56"
+    },
+    "BZD": {
+      "digits": 2,
+      "formatted": "BZD 1,234.56"
+    },
+    "CAD": {
+      "digits": 2,
+      "formatted": "CA$1,234.56"
+    },
+    "CDF": {
+      "digits": 2,
+      "formatted": "CDF 1,234.56"
+    },
+    "CHF": {
+      "digits": 2,
+      "formatted": "CHF 1,234.56"
+    },
+    "CLP": {
+      "digits": 0,
+      "formatted": "CLP 123,456"
+    },
+    "CNY": {
+      "digits": 2,
+      "formatted": "CN¥1,234.56"
+    },
+    "COP": {
+      "digits": 0,
+      "formatted": "COP 123,456"
+    },
+    "CRC": {
+      "digits": 2,
+      "formatted": "CRC 1,234.56"
+    },
+    "CUC": {
+      "digits": 2,
+      "formatted": "CUC 1,234.56"
+    },
+    "CUP": {
+      "digits": 2,
+      "formatted": "CUP 1,234.56"
+    },
+    "CVE": {
+      "digits": 2,
+      "formatted": "CVE 1,234.56"
+    },
+    "CZK": {
+      "digits": 2,
+      "formatted": "CZK 1,234.56"
+    },
+    "DJF": {
+      "digits": 0,
+      "formatted": "DJF 123,456"
+    },
+    "DKK": {
+      "digits": 2,
+      "formatted": "DKK 1,234.56"
+    },
+    "DOP": {
+      "digits": 2,
+      "formatted": "DOP 1,234.56"
+    },
+    "DZD": {
+      "digits": 2,
+      "formatted": "DZD 1,234.56"
+    },
+    "EGP": {
+      "digits": 2,
+      "formatted": "EGP 1,234.56"
+    },
+    "ERN": {
+      "digits": 2,
+      "formatted": "ERN 1,234.56"
+    },
+    "ETB": {
+      "digits": 2,
+      "formatted": "ETB 1,234.56"
+    },
+    "EUR": {
+      "digits": 2,
+      "formatted": "€1,234.56"
+    },
+    "FJD": {
+      "digits": 2,
+      "formatted": "FJD 1,234.56"
+    },
+    "FKP": {
+      "digits": 2,
+      "formatted": "FKP 1,234.56"
+    },
+    "GBP": {
+      "digits": 2,
+      "formatted": "£1,234.56"
+    },
+    "GEL": {
+      "digits": 2,
+      "formatted": "GEL 1,234.56"
+    },
+    "GHS": {
+      "digits": 2,
+      "formatted": "GHS 1,234.56"
+    },
+    "GIP": {
+      "digits": 2,
+      "formatted": "GIP 1,234.56"
+    },
+    "GMD": {
+      "digits": 2,
+      "formatted": "GMD 1,234.56"
+    },
+    "GNF": {
+      "digits": 0,
+      "formatted": "GNF 123,456"
+    },
+    "GTQ": {
+      "digits": 2,
+      "formatted": "GTQ 1,234.56"
+    },
+    "GYD": {
+      "digits": 2,
+      "formatted": "GYD 1,234.56"
+    },
+    "HKD": {
+      "digits": 2,
+      "formatted": "HK$1,234.56"
+    },
+    "HNL": {
+      "digits": 2,
+      "formatted": "HNL 1,234.56"
+    },
+    "HRK": {
+      "digits": 2,
+      "formatted": "HRK 1,234.56"
+    },
+    "HTG": {
+      "digits": 2,
+      "formatted": "HTG 1,234.56"
+    },
+    "HUF": {
+      "digits": 0,
+      "formatted": "HUF 123,456"
+    },
+    "IDR": {
+      "digits": 0,
+      "formatted": "IDR 123,456"
+    },
+    "ILS": {
+      "digits": 2,
+      "formatted": "₪1,234.56"
+    },
+    "INR": {
+      "digits": 2,
+      "formatted": "₹1,234.56"
+    },
+    "IQD": {
+      "digits": 0,
+      "formatted": "IQD 123,456"
+    },
+    "IRR": {
+      "digits": 0,
+      "formatted": "IRR 123,456"
+    },
+    "ISK": {
+      "digits": 0,
+      "formatted": "ISK 123,456"
+    },
+    "JMD": {
+      "digits": 2,
+      "formatted": "JMD 1,234.56"
+    },
+    "JOD": {
+      "digits": 3,
+      "formatted": "JOD 123.456"
+    },
+    "JPY": {
+      "digits": 0,
+      "formatted": "¥123,456"
+    },
+    "KES": {
+      "digits": 2,
+      "formatted": "KES 1,234.56"
+    },
+    "KGS": {
+      "digits": 2,
+      "formatted": "KGS 1,234.56"
+    },
+    "KHR": {
+      "digits": 2,
+      "formatted": "KHR 1,234.56"
+    },
+    "KMF": {
+      "digits": 0,
+      "formatted": "KMF 123,456"
+    },
+    "KPW": {
+      "digits": 0,
+      "formatted": "KPW 123,456"
+    },
+    "KRW": {
+      "digits": 0,
+      "formatted": "₩123,456"
+    },
+    "KWD": {
+      "digits": 3,
+      "formatted": "KWD 123.456"
+    },
+    "KYD": {
+      "digits": 2,
+      "formatted": "KYD 1,234.56"
+    },
+    "KZT": {
+      "digits": 2,
+      "formatted": "KZT 1,234.56"
+    },
+    "LAK": {
+      "digits": 0,
+      "formatted": "LAK 123,456"
+    },
+    "LBP": {
+      "digits": 0,
+      "formatted": "LBP 123,456"
+    },
+    "LKR": {
+      "digits": 2,
+      "formatted": "LKR 1,234.56"
+    },
+    "LRD": {
+      "digits": 2,
+      "formatted": "LRD 1,234.56"
+    },
+    "LSL": {
+      "digits": 2,
+      "formatted": "LSL 1,234.56"
+    },
+    "LYD": {
+      "digits": 3,
+      "formatted": "LYD 123.456"
+    },
+    "MAD": {
+      "digits": 2,
+      "formatted": "MAD 1,234.56"
+    },
+    "MDL": {
+      "digits": 2,
+      "formatted": "MDL 1,234.56"
+    },
+    "MGA": {
+      "digits": 0,
+      "formatted": "MGA 123,456"
+    },
+    "MKD": {
+      "digits": 2,
+      "formatted": "MKD 1,234.56"
+    },
+    "MMK": {
+      "digits": 0,
+      "formatted": "MMK 123,456"
+    },
+    "MNT": {
+      "digits": 2,
+      "formatted": "MNT 1,234.56"
+    },
+    "MOP": {
+      "digits": 2,
+      "formatted": "MOP 1,234.56"
+    },
+    "MRU": {
+      "digits": 2,
+      "formatted": "MRU 1,234.56"
+    },
+    "MUR": {
+      "digits": 2,
+      "formatted": "MUR 1,234.56"
+    },
+    "MVR": {
+      "digits": 2,
+      "formatted": "MVR 1,234.56"
+    },
+    "MWK": {
+      "digits": 2,
+      "formatted": "MWK 1,234.56"
+    },
+    "MXN": {
+      "digits": 2,
+      "formatted": "MX$1,234.56"
+    },
+    "MYR": {
+      "digits": 2,
+      "formatted": "MYR 1,234.56"
+    },
+    "MZN": {
+      "digits": 2,
+      "formatted": "MZN 1,234.56"
+    },
+    "NAD": {
+      "digits": 2,
+      "formatted": "NAD 1,234.56"
+    },
+    "NGN": {
+      "digits": 2,
+      "formatted": "NGN 1,234.56"
+    },
+    "NIO": {
+      "digits": 2,
+      "formatted": "NIO 1,234.56"
+    },
+    "NOK": {
+      "digits": 2,
+      "formatted": "NOK 1,234.56"
+    },
+    "NPR": {
+      "digits": 2,
+      "formatted": "NPR 1,234.56"
+    },
+    "NZD": {
+      "digits": 2,
+      "formatted": "NZ$1,234.56"
+    },
+    "OMR": {
+      "digits": 3,
+      "formatted": "OMR 123.456"
+    },
+    "PAB": {
+      "digits": 2,
+      "formatted": "PAB 1,234.56"
+    },
+    "PEN": {
+      "digits": 2,
+      "formatted": "PEN 1,234.56"
+    },
+    "PGK": {
+      "digits": 2,
+      "formatted": "PGK 1,234.56"
+    },
+    "PHP": {
+      "digits": 2,
+      "formatted": "₱1,234.56"
+    },
+    "PKR": {
+      "digits": 0,
+      "formatted": "PKR 123,456"
+    },
+    "PLN": {
+      "digits": 2,
+      "formatted": "PLN 1,234.56"
+    },
+    "PYG": {
+      "digits": 0,
+      "formatted": "PYG 123,456"
+    },
+    "QAR": {
+      "digits": 2,
+      "formatted": "QAR 1,234.56"
+    },
+    "RON": {
+      "digits": 2,
+      "formatted": "RON 1,234.56"
+    },
+    "RSD": {
+      "digits": 2,
+      "formatted": "RSD 1,234.56"
+    },
+    "RUB": {
+      "digits": 2,
+      "formatted": "RUB 1,234.56"
+    },
+    "RWF": {
+      "digits": 0,
+      "formatted": "RWF 123,456"
+    },
+    "SAR": {
+      "digits": 2,
+      "formatted": "SAR 1,234.56"
+    },
+    "SBD": {
+      "digits": 2,
+      "formatted": "SBD 1,234.56"
+    },
+    "SCR": {
+      "digits": 2,
+      "formatted": "SCR 1,234.56"
+    },
+    "SDG": {
+      "digits": 2,
+      "formatted": "SDG 1,234.56"
+    },
+    "SEK": {
+      "digits": 2,
+      "formatted": "SEK 1,234.56"
+    },
+    "SGD": {
+      "digits": 2,
+      "formatted": "SGD 1,234.56"
+    },
+    "SHP": {
+      "digits": 2,
+      "formatted": "SHP 1,234.56"
+    },
+    "SLE": {
+      "digits": 2,
+      "formatted": "SLE 1,234.56"
+    },
+    "SLL": {
+      "digits": 0,
+      "formatted": "SLL 123,456"
+    },
+    "SOS": {
+      "digits": 0,
+      "formatted": "SOS 123,456"
+    },
+    "SRD": {
+      "digits": 2,
+      "formatted": "SRD 1,234.56"
+    },
+    "SSP": {
+      "digits": 2,
+      "formatted": "SSP 1,234.56"
+    },
+    "STN": {
+      "digits": 2,
+      "formatted": "STN 1,234.56"
+    },
+    "SVC": {
+      "digits": 2,
+      "formatted": "SVC 1,234.56"
+    },
+    "SYP": {
+      "digits": 0,
+      "formatted": "SYP 123,456"
+    },
+    "SZL": {
+      "digits": 2,
+      "formatted": "SZL 1,234.56"
+    },
+    "THB": {
+      "digits": 2,
+      "formatted": "THB 1,234.56"
+    },
+    "TJS": {
+      "digits": 2,
+      "formatted": "TJS 1,234.56"
+    },
+    "TMT": {
+      "digits": 2,
+      "formatted": "TMT 1,234.56"
+    },
+    "TND": {
+      "digits": 3,
+      "formatted": "TND 123.456"
+    },
+    "TOP": {
+      "digits": 2,
+      "formatted": "TOP 1,234.56"
+    },
+    "TRY": {
+      "digits": 2,
+      "formatted": "TRY 1,234.56"
+    },
+    "TTD": {
+      "digits": 2,
+      "formatted": "TTD 1,234.56"
+    },
+    "TWD": {
+      "digits": 2,
+      "formatted": "NT$1,234.56"
+    },
+    "TZS": {
+      "digits": 2,
+      "formatted": "TZS 1,234.56"
+    },
+    "UAH": {
+      "digits": 2,
+      "formatted": "UAH 1,234.56"
+    },
+    "UGX": {
+      "digits": 0,
+      "formatted": "UGX 123,456"
+    },
+    "USD": {
+      "digits": 2,
+      "formatted": "$1,234.56"
+    },
+    "UYU": {
+      "digits": 2,
+      "formatted": "UYU 1,234.56"
+    },
+    "UZS": {
+      "digits": 2,
+      "formatted": "UZS 1,234.56"
+    },
+    "VES": {
+      "digits": 2,
+      "formatted": "VES 1,234.56"
+    },
+    "VND": {
+      "digits": 0,
+      "formatted": "₫123,456"
+    },
+    "VUV": {
+      "digits": 0,
+      "formatted": "VUV 123,456"
+    },
+    "WST": {
+      "digits": 2,
+      "formatted": "WST 1,234.56"
+    },
+    "XAF": {
+      "digits": 0,
+      "formatted": "FCFA 123,456"
+    },
+    "XCD": {
+      "digits": 2,
+      "formatted": "EC$1,234.56"
+    },
+    "XCG": {
+      "digits": 2,
+      "formatted": "Cg. 1,234.56"
+    },
+    "XDR": {
+      "digits": 2,
+      "formatted": "XDR 1,234.56"
+    },
+    "XOF": {
+      "digits": 0,
+      "formatted": "F CFA 123,456"
+    },
+    "XPF": {
+      "digits": 0,
+      "formatted": "CFPF 123,456"
+    },
+    "XSU": {
+      "digits": 2,
+      "formatted": "XSU 1,234.56"
+    },
+    "YER": {
+      "digits": 0,
+      "formatted": "YER 123,456"
+    },
+    "ZAR": {
+      "digits": 2,
+      "formatted": "ZAR 1,234.56"
+    },
+    "ZMW": {
+      "digits": 2,
+      "formatted": "ZMW 1,234.56"
+    },
+    "ZWG": {
+      "digits": 2,
+      "formatted": "ZWG 1,234.56"
+    },
+    "ZWL": {
+      "digits": 2,
+      "formatted": "ZWL 1,234.56"
+    }
+  }
+}

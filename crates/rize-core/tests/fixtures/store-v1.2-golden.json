@@ -1,0 +1,270 @@
+{
+  "sourceCommit": "98f56dba6138280b64a7ea57c02b91b73a268b8a",
+  "initial": {
+    "schemaVersion": 1,
+    "workspaceId": "golden-workspace",
+    "onboarded": false,
+    "demo": false,
+    "settings": {
+      "displayName": "You",
+      "trackingEnabled": false,
+      "idleSeconds": 300,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "entries": [],
+    "clients": [],
+    "projects": [],
+    "tasks": [],
+    "rules": [],
+    "sessions": [],
+    "timer": null,
+    "business": {
+      "profile": {
+        "name": "",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "",
+        "invoicePrefix": "INV-"
+      },
+      "clientTerms": [],
+      "contracts": [],
+      "invoices": [],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 1
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  },
+  "steps": [
+    {
+      "command": {
+        "type": "client.upsert",
+        "payload": {
+          "id": "client",
+          "name": "Acme",
+          "hourlyRate": 95
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "project.upsert",
+        "payload": {
+          "id": "project",
+          "name": "Website",
+          "clientId": "client",
+          "keywords": "Design, Code, Design"
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "task.upsert",
+        "payload": {
+          "id": "task",
+          "name": "Implementation",
+          "projectId": "project"
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "rule.upsert",
+        "payload": {
+          "id": "rule",
+          "name": "Code",
+          "keyword": "Code",
+          "action": "productive",
+          "taskId": "task"
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "entry.upsert",
+        "payload": {
+          "id": "entry",
+          "start": "2026-10-17T09:00:00.123Z",
+          "end": "2026-10-17T09:30:00.456Z",
+          "description": "Build app",
+          "app": "Code",
+          "title": "Private local",
+          "source": "automatic",
+          "status": "pending",
+          "taskId": "task"
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "entry.review",
+        "payload": {
+          "id": "entry",
+          "status": "approved"
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "settings.update",
+        "payload": {
+          "displayName": "Ada",
+          "idleSeconds": 180,
+          "workDays": [
+            5,
+            1,
+            1,
+            3
+          ]
+        }
+      },
+      "nowMs": 1792227600000
+    },
+    {
+      "command": {
+        "type": "project.upsert",
+        "payload": {
+          "id": "project",
+          "name": "New name"
+        }
+      },
+      "nowMs": 1792227600000
+    }
+  ],
+  "expected": {
+    "schemaVersion": 1,
+    "workspaceId": "golden-workspace",
+    "onboarded": false,
+    "demo": false,
+    "settings": {
+      "displayName": "Ada",
+      "trackingEnabled": false,
+      "idleSeconds": 180,
+      "scheduleEnabled": false,
+      "scheduleStart": "09:00",
+      "scheduleEnd": "18:00",
+      "workDays": [
+        1,
+        3,
+        5
+      ]
+    },
+    "entries": [
+      {
+        "id": "entry",
+        "start": "2026-10-17T09:00:00.123Z",
+        "end": "2026-10-17T09:30:00.456Z",
+        "durationMs": 1800333,
+        "description": "Build app",
+        "app": "Code",
+        "title": "Private local",
+        "status": "approved",
+        "source": "automatic",
+        "category": "neutral",
+        "clientId": "client",
+        "projectId": "project",
+        "taskId": "task",
+        "billable": false,
+        "labelIds": [],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": "",
+        "externalSource": ""
+      }
+    ],
+    "clients": [
+      {
+        "id": "client",
+        "name": "Acme",
+        "hourlyRate": 95
+      }
+    ],
+    "projects": [
+      {
+        "id": "project",
+        "name": "New name",
+        "clientId": "client",
+        "keywords": [
+          "Design",
+          "Code"
+        ],
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": ""
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task",
+        "name": "Implementation",
+        "clientId": "client",
+        "projectId": "project",
+        "keywords": [],
+        "done": false,
+        "externalId": "",
+        "externalProvider": "",
+        "externalUrl": ""
+      }
+    ],
+    "rules": [
+      {
+        "id": "rule",
+        "name": "Code",
+        "keyword": "Code",
+        "action": "productive",
+        "clientId": "client",
+        "projectId": "project",
+        "taskId": "task"
+      }
+    ],
+    "sessions": [],
+    "timer": null,
+    "business": {
+      "profile": {
+        "name": "",
+        "address": "",
+        "email": "",
+        "paymentInstructions": "",
+        "invoicePrefix": "INV-"
+      },
+      "clientTerms": [],
+      "contracts": [],
+      "invoices": [],
+      "allocations": [],
+      "labels": [],
+      "nextInvoiceNumber": 1
+    },
+    "sharedIds": {
+      "clients": [],
+      "projects": [],
+      "tasks": [],
+      "entries": [],
+      "contracts": [],
+      "allocations": [],
+      "invoices": []
+    }
+  }
+}

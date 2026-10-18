@@ -1,0 +1,647 @@
+{
+  "sourceCommit": "98f56dba6138280b64a7ea57c02b91b73a268b8a",
+  "scenarios": [
+    {
+      "name": "continuous-and-switch",
+      "state": {
+        "onboarded": true,
+        "demo": false,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [],
+        "clients": [],
+        "projects": [],
+        "tasks": []
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.123Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.123Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.123Z",
+              "end": "1970-01-01T00:00:05.123Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:10.128Z",
+            "app": "Word",
+            "title": "Document",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.123Z",
+              "end": "1970-01-01T00:00:10.128Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 10005
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:15.128Z",
+            "app": "Word",
+            "title": "Document",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-2",
+              "start": "1970-01-01T00:00:10.128Z",
+              "end": "1970-01-01T00:00:15.128Z",
+              "description": "Document",
+              "app": "Word",
+              "title": "Document",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "flush": "1970-01-01T00:02:00.000Z",
+          "expected": [
+            {
+              "id": "activity-2",
+              "start": "1970-01-01T00:00:10.128Z",
+              "end": "1970-01-01T00:00:15.128Z",
+              "description": "Document",
+              "app": "Word",
+              "title": "Document",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "idle-unavailable-gaps-reversed",
+      "state": {
+        "onboarded": true,
+        "demo": false,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [],
+        "clients": [],
+        "projects": [],
+        "tasks": []
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.000Z",
+              "end": "1970-01-01T00:00:05.000Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:10.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 300,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:15.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:20.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-2",
+              "start": "1970-01-01T00:00:15.000Z",
+              "end": "1970-01-01T00:00:20.000Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:01:20.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:01:25.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-3",
+              "start": "1970-01-01T00:01:20.000Z",
+              "end": "1970-01-01T00:01:25.000Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:01:24.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:01:25.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:01:30.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": false
+          },
+          "expected": []
+        },
+        {
+          "flush": "1970-01-01T00:02:00.000Z",
+          "expected": []
+        }
+      ]
+    },
+    {
+      "name": "privacy-and-allowlist",
+      "state": {
+        "onboarded": true,
+        "demo": false,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [],
+        "clients": [],
+        "projects": [],
+        "tasks": []
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.000Z",
+            "app": "Br\u0000owser",
+            "title": "Secret - Incognito",
+            "idleSeconds": 0,
+            "available": true,
+            "path": "C:\\private\\browser.exe",
+            "url": "https://secret.test"
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.000Z",
+            "app": "Browser",
+            "title": "Visit https://secret.test/account and www.private.test today",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.000Z",
+              "end": "1970-01-01T00:00:05.000Z",
+              "description": "[Private window]",
+              "app": "Browser",
+              "title": "[Private window]",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "neutral",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:10.000Z",
+            "app": "Browser",
+            "title": "Visit https://secret.test/account and www.private.test today",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-2",
+              "start": "1970-01-01T00:00:05.000Z",
+              "end": "1970-01-01T00:00:10.000Z",
+              "description": "Visit [address] and [address] today",
+              "app": "Browser",
+              "title": "Visit [address] and [address] today",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "neutral",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "task-ancestors-and-rule-priority",
+      "state": {
+        "onboarded": true,
+        "demo": false,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [
+          {
+            "keyword": "YouTube",
+            "action": "productive"
+          },
+          {
+            "keyword": "Private",
+            "action": "exclude"
+          }
+        ],
+        "clients": [
+          {
+            "id": "c"
+          }
+        ],
+        "projects": [
+          {
+            "id": "p",
+            "clientId": "c",
+            "keywords": "Launch,Acme"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "t",
+            "projectId": "p",
+            "keywords": [
+              "Launch"
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.000Z",
+            "app": "Code",
+            "title": "Launch",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.000Z",
+            "app": "Code",
+            "title": "Launch YouTube",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.000Z",
+              "end": "1970-01-01T00:00:05.000Z",
+              "description": "Launch",
+              "app": "Code",
+              "title": "Launch",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "c",
+              "projectId": "p",
+              "taskId": "t",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:10.000Z",
+            "app": "Code",
+            "title": "Launch YouTube",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-2",
+              "start": "1970-01-01T00:00:05.000Z",
+              "end": "1970-01-01T00:00:10.000Z",
+              "description": "Launch YouTube",
+              "app": "Code",
+              "title": "Launch YouTube",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:15.000Z",
+            "app": "Code",
+            "title": "Private data",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:20.000Z",
+            "app": "Code",
+            "title": "Launch",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:25.000Z",
+            "app": "Code",
+            "title": "Launch",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-3",
+              "start": "1970-01-01T00:00:20.000Z",
+              "end": "1970-01-01T00:00:25.000Z",
+              "description": "Launch",
+              "app": "Code",
+              "title": "Launch",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "c",
+              "projectId": "p",
+              "taskId": "t",
+              "category": "productive",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "unknown-hierarchy",
+      "state": {
+        "onboarded": true,
+        "demo": false,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [
+          {
+            "keyword": "Project",
+            "action": "neutral",
+            "clientId": "missing",
+            "projectId": "missing",
+            "taskId": "missing"
+          }
+        ],
+        "clients": [],
+        "projects": [],
+        "tasks": []
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": [
+            {
+              "id": "activity-1",
+              "start": "1970-01-01T00:00:00.000Z",
+              "end": "1970-01-01T00:00:05.000Z",
+              "description": "Project",
+              "app": "Code",
+              "title": "Project",
+              "status": "pending",
+              "source": "automatic",
+              "clientId": "",
+              "projectId": "",
+              "taskId": "",
+              "category": "neutral",
+              "billable": false,
+              "durationMs": 5000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "disabled-and-demo",
+      "state": {
+        "onboarded": true,
+        "demo": true,
+        "settings": {
+          "trackingEnabled": true,
+          "idleSeconds": 300
+        },
+        "rules": [],
+        "clients": [],
+        "projects": [],
+        "tasks": []
+      },
+      "steps": [
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:00.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "sample": {
+            "timestamp": "1970-01-01T00:00:05.000Z",
+            "app": "Code",
+            "title": "Project",
+            "idleSeconds": 0,
+            "available": true
+          },
+          "expected": []
+        },
+        {
+          "flush": "1970-01-01T00:02:00.000Z",
+          "expected": []
+        }
+      ]
+    }
+  ]
+}
