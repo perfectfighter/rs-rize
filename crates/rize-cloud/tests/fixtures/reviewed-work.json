@@ -1,0 +1,170 @@
+{
+  "baseline": "98f56dba6138280b64a7ea57c02b91b73a268b8a",
+  "input": {
+    "clients": [
+      {
+        "id": "client",
+        "name": "Client एक",
+        "hourlyRate": 125.5
+      }
+    ],
+    "projects": [
+      {
+        "id": "project",
+        "name": "Project",
+        "clientId": "client",
+        "keywords": [
+          "work"
+        ]
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task",
+        "name": "Task",
+        "clientId": "client",
+        "projectId": "project",
+        "done": false
+      }
+    ],
+    "entries": [
+      {
+        "id": "reviewed",
+        "start": "2026-10-17T14:30:00.123+05:30",
+        "end": "2026-10-17T15:00:00.456+05:30",
+        "description": "Reviewed work",
+        "app": "Private app",
+        "title": "Private title",
+        "status": "approved",
+        "source": "automatic",
+        "category": "productive",
+        "clientId": "client",
+        "projectId": "project",
+        "taskId": "task",
+        "billable": true,
+        "labelIds": [
+          "local-label"
+        ],
+        "externalUrl": "https://private.example.test/path"
+      },
+      {
+        "id": "pending",
+        "status": "pending",
+        "description": "Never shared"
+      },
+      {
+        "id": "break",
+        "status": "approved",
+        "category": "break"
+      }
+    ],
+    "business": {
+      "contracts": [
+        {
+          "id": "contract",
+          "clientId": "client",
+          "currency": "INR",
+          "type": "hourly",
+          "hourlyRate": 125.5
+        }
+      ],
+      "allocations": [
+        {
+          "id": "allocation",
+          "userId": "user",
+          "projectId": "project",
+          "hours": 5
+        }
+      ],
+      "invoices": [
+        {
+          "id": "invoice",
+          "number": "INV-001",
+          "totalMinor": 10001
+        }
+      ]
+    }
+  },
+  "expected": {
+    "clients:client": {
+      "kind": "clients",
+      "id": "client",
+      "data": {
+        "id": "client",
+        "name": "Client एक",
+        "hourlyRate": 125.5
+      }
+    },
+    "projects:project": {
+      "kind": "projects",
+      "id": "project",
+      "data": {
+        "id": "project",
+        "name": "Project",
+        "clientId": "client",
+        "keywords": [
+          "work"
+        ]
+      }
+    },
+    "tasks:task": {
+      "kind": "tasks",
+      "id": "task",
+      "data": {
+        "id": "task",
+        "name": "Task",
+        "clientId": "client",
+        "projectId": "project",
+        "done": false
+      }
+    },
+    "entries:reviewed": {
+      "kind": "entries",
+      "id": "reviewed",
+      "data": {
+        "id": "reviewed",
+        "start": "2026-10-17T14:30:00.123+05:30",
+        "end": "2026-10-17T15:00:00.456+05:30",
+        "description": "Reviewed work",
+        "durationMs": 1800333,
+        "category": "productive",
+        "status": "approved",
+        "source": "automatic",
+        "clientId": "client",
+        "projectId": "project",
+        "taskId": "task",
+        "billable": true
+      }
+    },
+    "contracts:contract": {
+      "kind": "contracts",
+      "id": "contract",
+      "data": {
+        "id": "contract",
+        "clientId": "client",
+        "currency": "INR",
+        "type": "hourly",
+        "hourlyRate": 125.5
+      }
+    },
+    "allocations:allocation": {
+      "kind": "allocations",
+      "id": "allocation",
+      "data": {
+        "id": "allocation",
+        "userId": "user",
+        "projectId": "project",
+        "hours": 5
+      }
+    },
+    "invoices:invoice": {
+      "kind": "invoices",
+      "id": "invoice",
+      "data": {
+        "id": "invoice",
+        "number": "INV-001",
+        "totalMinor": 10001
+      }
+    }
+  }
+}
