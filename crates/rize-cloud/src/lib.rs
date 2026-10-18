@@ -1008,22 +1008,27 @@ impl CloudClient {
                 data
             }
             "analytics" => {
-                let mut query = url::form_urlencoded::Serializer::new(String::new());
-                for key in ["startDate", "endDate", "timezone"] {
-                    if let Some(value) = payload[key].as_str() {
-                        query.append_pair(key, value);
+                // The serializer contains a non-Sync encoding callback. Keep
+                // it entirely outside the future's suspension point so this
+                // command can run in Tauri commands and background Tokio tasks.
+                let query = {
+                    let mut query = url::form_urlencoded::Serializer::new(String::new());
+                    for key in ["startDate", "endDate", "timezone"] {
+                        if let Some(value) = payload[key].as_str() {
+                            query.append_pair(key, value);
+                        }
                     }
-                }
-                if !payload["capacityHours"].is_null() {
-                    query.append_pair(
-                        "capacityHours",
-                        &payload["capacityHours"]
-                            .as_str()
-                            .map(str::to_owned)
-                            .unwrap_or_else(|| payload["capacityHours"].to_string()),
-                    );
-                }
-                let query = query.finish();
+                    if !payload["capacityHours"].is_null() {
+                        query.append_pair(
+                            "capacityHours",
+                            &payload["capacityHours"]
+                                .as_str()
+                                .map(str::to_owned)
+                                .unwrap_or_else(|| payload["capacityHours"].to_string()),
+                        );
+                    }
+                    query.finish()
+                };
                 let route = self.team_route(&format!(
                     "/analytics{}",
                     if query.is_empty() {
@@ -1268,5 +1273,28 @@ mod tests {
             encoded(&json!({"rate":0.0,"count":1.0})),
             encoded(&json!({"rate":0,"count":1}))
         );
+    }
+    #[test]
+    fn cloud_command_futures_are_send_for_desktop_and_background_tasks() {
+        fn assert_send<T: Send>(_: T) {}
+        let store = Arc::new(Mutex::new(Store::new(None).unwrap()));
+        let mut client = CloudClient::new(None, store).unwrap();
+        let ticket = client.begin_operation().unwrap();
+
+        // These are the real command futures. The compiler checks every action
+        // branch, including analytics, even though no network future is polled.
+        assert_send(client.execute("analytics", json!({"timezone":"Asia/Kolkata"})));
+        assert_send(client.execute_with_ticket("sync", json!({"consent":true}), ticket.clone()));
+
+        // Match the shell's queued/background shape too: its async mutex guard
+        // and the command future must both cross suspension points safely.
+        let client = Arc::new(tokio::sync::Mutex::new(client));
+        assert_send(async move {
+            client
+                .lock()
+                .await
+                .execute_with_ticket("sync", json!({"consent":true}), ticket)
+                .await
+        });
     }
 }
