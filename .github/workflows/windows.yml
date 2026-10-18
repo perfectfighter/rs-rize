@@ -1,0 +1,85 @@
+name: Verify Rust port and build Windows downloads
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rust-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.99.1 --profile minimal --component rustfmt
+      - name: Restore Rust build cache
+        uses: actions/cache/restore@v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-windows-1.99.1-${{ hashFiles('Cargo.lock') }}-${{ github.sha }}
+          restore-keys: rust-windows-1.99.1-${{ hashFiles('Cargo.lock') }}-
+      - name: Install pinned frontend dependencies
+        run: npm ci
+      - name: Verify Rust formatting
+        run: cargo fmt --all -- --check
+      - name: Test Rust core, HTTP service, cloud, and desktop boundaries
+        run: cargo test --workspace --locked
+      - name: Test retained interface and native bridge
+        run: npm test
+      - name: Build Windows installer
+        run: npm run package:windows
+      - name: Build standalone Rust service and MCP
+        run: cargo build --release --locked -p rize-service --bins
+      - name: Package portable binaries and source
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release/rs-rize-windows-x64 | Out-Null
+          Copy-Item target/release/rs-rize.exe,target/release/rize-service.exe,target/release/rize-mcp.exe release/rs-rize-windows-x64/
+          Copy-Item README.md,THIRD-PARTY-NOTICES.md release/rs-rize-windows-x64/
+          Copy-Item docs release/rs-rize-windows-x64/docs -Recurse
+          git archive --format=zip --output=release/rs-rize-source.zip HEAD
+          Copy-Item release/rs-rize-source.zip release/rs-rize-windows-x64/
+          Compress-Archive -Path release/rs-rize-windows-x64 -DestinationPath release/rs-rize-windows-x64.zip
+          $hash = (Get-FileHash release/rs-rize-windows-x64.zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  rs-rize-windows-x64.zip" | Out-File release/rs-rize-windows-x64.zip.sha256 -Encoding ascii
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: rs-rize-windows-installer
+          path: target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload portable Rust binaries
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: rs-rize-windows-x64
+          path: |
+            release/rs-rize-windows-x64.zip
+            release/rs-rize-windows-x64.zip.sha256
+          if-no-files-found: error
+          retention-days: 30
+      - name: Save Rust build cache
+        if: always()
+        uses: actions/cache/save@v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-windows-1.99.1-${{ hashFiles('Cargo.lock') }}-${{ github.sha }}
