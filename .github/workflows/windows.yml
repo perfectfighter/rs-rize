@@ -75,7 +75,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - name: Save Rust build cache
-        if: always()
+        if: ${{ always() && !cancelled() }}
         uses: actions/cache/save@v6.1.0
         with:
           path: |
