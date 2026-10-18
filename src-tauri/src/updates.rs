@@ -141,6 +141,12 @@ impl UpdateService {
             let updater = self
                 .app
                 .updater_builder()
+                // The shell flushes the workspace and pauses cloud sync before
+                // installation. Tauri's default hook hides windows and destroys
+                // tray/resources before ShellExecute, even when launching fails.
+                // Keep the UI intact on failure; a successful launch immediately
+                // exits this process and Windows releases its UI resources.
+                .on_before_exit(|| {})
                 .pubkey(self.pubkey.clone())
                 .endpoints(vec![self
                     .endpoint
