@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, Plus, Edit2, Trash2, X, Download, Upload, Users, Folder, CheckSquare, Sliders, CheckCircle, AlertCircle, Clock, Shield } from 'react-feather';
 import './WorkPages.css';
 
@@ -36,10 +36,28 @@ export function WorkPage({ kind, state, mutate }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [busy, setBusy] = useState(false);
+  const editor = useRef(null), opener = useRef(null);
+  const editorOpen = !!draft;
+  useEffect(() => {
+    if (!editorOpen) return;
+    const dialog = editor.current, origin = opener.current;
+    const focusable = () => [...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]')];
+    dialog.querySelector('input')?.focus();
+    const keyboard = event => {
+      if (event.key === 'Escape') { event.preventDefault(); setDraft(null); setError(''); }
+      if (event.key !== 'Tab') return;
+      const elements = focusable(), first = elements[0], last = elements.at(-1);
+      if (!first) return;
+      if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', keyboard);
+    return () => { document.removeEventListener('keydown', keyboard); if (origin?.isConnected) origin.focus(); };
+  }, [editorOpen]);
   useEffect(() => { setSearch(''); setDraft(null); setError(''); setSuccess(''); }, [safeKind]);
   const items = state[safeKind] || EMPTY_ARRAY;
   const filtered = items.filter(item => `${item.name} ${keywords(item.keywords)} ${findName(state.clients, item.clientId, '')} ${findName(state.projects, item.projectId, '')}`.toLowerCase().includes(search.toLowerCase()));
-  const open = item => { setError(''); setSuccess(''); setDraft({ id: item?.id || '', name: item?.name || '', hourlyRate: item?.hourlyRate ?? 0, clientId: item?.clientId || '', projectId: item?.projectId || '', keywords: keywords(item?.keywords) }); };
+  const open = (item, trigger) => { opener.current = trigger || document.activeElement; setError(''); setSuccess(''); setDraft({ id: item?.id || '', name: item?.name || '', hourlyRate: item?.hourlyRate ?? 0, clientId: item?.clientId || '', projectId: item?.projectId || '', keywords: keywords(item?.keywords) }); };
   const save = async event => {
     event.preventDefault(); setError(''); setBusy(true);
     try {
@@ -58,14 +76,17 @@ export function WorkPage({ kind, state, mutate }) {
   };
   const entityTimes = useMemo(() => { const totals = new Map(); for (const entry of state.entries || EMPTY_ARRAY) { if (entry.status !== 'approved') continue; const id = entry[`${singular}Id`]; if (!id) continue; totals.set(id, (totals.get(id) || 0) + Math.max(0, Date.parse(entry.end) - Date.parse(entry.start) || 0)); } return totals; }, [state.entries, singular]);
   return <section className="wp-page">
-    <header className="wp-header"><div><div className="wp-eyebrow">WORKSPACE</div><h1>{title}</h1><p>Organize your time around the work that matters.</p></div><button className="wp-button is-primary" onClick={() => open(null)}><Plus size={16} />New {singular}</button></header>
-    <Notice error={error} success={success} />
+    <header className="wp-header"><div><div className="wp-eyebrow">WORKSPACE</div><h1>{title}</h1><p>Organize your time around the work that matters.</p></div><button className="wp-button is-primary" onClick={event => open(null, event.currentTarget)}><Plus size={16} />New {singular}</button></header>
+    {!draft && <Notice error={error} success={success} />}
     <div className="wp-toolbar"><label className="wp-search"><Search size={16} /><input aria-label={`Search ${safeKind}`} placeholder={`Search ${safeKind}…`} value={search} onChange={event => setSearch(event.target.value)} /></label><span className="wp-muted">{filtered.length} {filtered.length === 1 ? singular : safeKind}</span></div>
-    {draft && <form className="wp-editor" onSubmit={save}><div className="wp-editor-heading"><h2>{draft.id ? 'Edit' : 'New'} {singular}</h2><button className="wp-icon-button" type="button" aria-label="Close editor" onClick={() => { setDraft(null); setError(''); }}><X size={17} /></button></div><label className="wp-field"><span>Name</span><input autoFocus required maxLength={160} value={draft.name} onChange={event => setDraft({ ...draft, name: event.target.value })} placeholder={`${singular[0].toUpperCase() + singular.slice(1)} name`} /></label>
+    {draft && <div className="wp-editor-backdrop" onMouseDown={event => { if (event.target === event.currentTarget) { setDraft(null); setError(''); } }}><form className="wp-editor" ref={editor} role="dialog" aria-modal="true" aria-labelledby="wp-editor-title" onSubmit={save}><div className="wp-editor-heading"><h2 id="wp-editor-title">{draft.id ? 'Edit' : 'New'} {singular}</h2><button className="wp-icon-button" type="button" aria-label="Close editor" onClick={() => { setDraft(null); setError(''); }}><X size={17} /></button></div><Notice error={error} success={success} /><label className="wp-field"><span>Name</span><input autoFocus required maxLength={160} value={draft.name} onChange={event => setDraft({ ...draft, name: event.target.value })} placeholder={`${singular[0].toUpperCase() + singular.slice(1)} name`} /></label>
       {safeKind === 'clients' ? <label className="wp-field"><span>Hourly rate · USD</span><input type="number" min="0" max="100000" step="0.01" value={draft.hourlyRate} onChange={event => setDraft({ ...draft, hourlyRate: event.target.value })} /><small>Used for billable time in reports.</small></label> : <>{safeKind === 'projects' ? <SelectField label="Client" value={draft.clientId} items={state.clients} onChange={clientId => setDraft({ ...draft, clientId })} /> : <TagsFields draft={draft} setDraft={setDraft} state={state} />}<label className="wp-field"><span>Keywords</span><input value={draft.keywords} maxLength={2000} onChange={event => setDraft({ ...draft, keywords: event.target.value })} placeholder="design, website, launch" /><small>Separate keywords with commas. Keywords help match recorded window titles.</small></label></>}
-      <div className="wp-form-actions"><button type="button" className="wp-button" onClick={() => setDraft(null)}>Cancel</button><button className="wp-button is-primary" disabled={busy}>{busy ? 'Saving…' : `Save ${singular}`}</button></div></form>}
-    <div className="wp-list" role="list">{filtered.map(item => <article key={item.id} className="wp-entity" role="listitem"><span className="wp-entity-icon"><Icon size={19} /></span><div className="wp-entity-info"><h2>{item.name}</h2><p>{safeKind === 'clients' ? `${(state.projects || EMPTY_ARRAY).filter(project => project.clientId === item.id).length} projects · ${money.format(Number(item.hourlyRate) || 0)} / hour` : <>{findName(state.clients, item.clientId, 'No client')}{safeKind === 'tasks' && ` · ${findName(state.projects, item.projectId, 'No project')}`}{keywords(item.keywords) && <span className="wp-keywords">{keywords(item.keywords)}</span>}</>}</p></div><div className="wp-entity-time"><strong>{duration(entityTimes.get(item.id))}</strong><span>approved time</span></div><div className="wp-row-actions"><button className="wp-icon-button" aria-label={`Edit ${item.name}`} onClick={() => open(item)}><Edit2 size={16} /></button><button className="wp-icon-button is-danger" aria-label={`Delete ${item.name}`} onClick={() => remove(item)}><Trash2 size={16} /></button></div></article>)}</div>
-    {!filtered.length && <div className="wp-empty"><Icon size={27} /><h2>{search ? 'No matches' : `Your ${safeKind} start here`}</h2><p>{search ? 'Try another name or keyword.' : `Add a ${singular} to tag time entries and organize your reports.`}</p>{!search && <button className="wp-button" onClick={() => open(null)}><Plus size={15} />Add {singular}</button>}</div>}
+      <div className="wp-form-actions"><button type="button" className="wp-button" onClick={() => setDraft(null)}>Cancel</button><button className="wp-button is-primary" disabled={busy}>{busy ? 'Saving…' : `Save ${singular}`}</button></div></form></div>}
+    <div className={`wp-list wp-entity-table wp-entity-table--${safeKind}`} role="list">
+      <div className="wp-list-heading" aria-hidden="true"><span>{singular[0].toUpperCase()+singular.slice(1)}</span><span>{safeKind === 'clients' ? 'Projects' : 'Client'}</span><span>{safeKind === 'clients' ? 'Hourly rate' : safeKind === 'tasks' ? 'Project' : 'Keywords'}</span><span>Time spent</span><span /></div>
+      {filtered.map(item => <article key={item.id} className="wp-entity" role="listitem"><div className="wp-entity-name"><span className="wp-entity-icon"><Icon size={15} /></span><div className="wp-entity-info"><h2>{item.name}</h2></div></div><div className="wp-entity-meta">{safeKind === 'clients' ? `${(state.projects || EMPTY_ARRAY).filter(project => project.clientId === item.id).length} projects` : findName(state.clients, item.clientId, 'No client')}</div><div className="wp-entity-meta">{safeKind === 'clients' ? `${money.format(Number(item.hourlyRate) || 0)} / hour` : safeKind === 'tasks' ? <>{findName(state.projects, item.projectId, 'No project')}{keywords(item.keywords) && <span className="wp-keywords">{keywords(item.keywords)}</span>}</> : keywords(item.keywords) || '—'}</div><div className="wp-entity-time"><strong>{duration(entityTimes.get(item.id))}</strong><span>approved time</span></div><div className="wp-row-actions"><button className="wp-icon-button" aria-label={`Edit ${item.name}`} onClick={event => open(item, event.currentTarget)}><Edit2 size={16} /></button><button className="wp-icon-button is-danger" aria-label={`Delete ${item.name}`} onClick={() => remove(item)}><Trash2 size={16} /></button></div></article>)}
+    </div>
+    {!filtered.length && <div className="wp-empty"><Icon size={27} /><h2>{search ? 'No matches' : `Your ${safeKind} start here`}</h2><p>{search ? 'Try another name or keyword.' : `Add a ${singular} to tag time entries and organize your reports.`}</p>{!search && <button className="wp-button" onClick={event => open(null, event.currentTarget)}><Plus size={15} />Add {singular}</button>}</div>}
   </section>;
 }
 
