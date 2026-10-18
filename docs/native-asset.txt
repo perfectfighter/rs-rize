@@ -1,0 +1,6 @@
+Native icon: Rize public website favicon, downloaded unchanged.
+Source page: https://rize.io/
+Exact asset URL: https://rize.io/favicon.ico?favicon.1ca4wwrcrk1-w.ico
+The .ico URL serves a PNG file: 48 x 48 pixels, 1196 bytes.
+SHA-256: be0660a1024b86371f4163dbd5a08210fc6bfcb6c971b8adabbcb661b268564f
+Retrieved 2026-10-17. The Rize icon remains the property of its owner.
